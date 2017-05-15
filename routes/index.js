@@ -1,8 +1,13 @@
-var express = require('express');
-var fs = require('fs');
-var router = express.Router();
-var multer = require('multer');
-var upload = multer({ dest: '/uploads/'});
+'use strict';
+
+const 
+  express = require('express'),
+  fs = require('fs'),
+  router = express.Router(),
+  multer = require('multer');
+let upload = multer({ storage: multer.memoryStorage() });
+
+let faceService = require('../services/face-service');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,18 +15,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/image/upload', upload.single('file'), function (req, res) {
-  var file = __dirname + '/../uploads/' + req.file.originalname;
-  fs.rename(req.file.path, file, function (err) {
-    if (err) {
-      console.log(err);
-      res.send(500);
-    } else {
+  faceService.getFaceAttributes(req.file.buffer)
+    .then(data => {
+      let info = JSON.parse(data);
+      console.log(info);
       res.json({
-        message: 'File uploaded successfully',
-        filename: req.file.originalname
+        status: 'SUCCESS',
+        message: 'File processed',
+        data: info
       });
-    }
-  });
+    })
+    .catch(err => {
+      res.json({
+        status: 'ERROR',
+        message: err.message
+      });
+    });
 });
 
 module.exports = router;
