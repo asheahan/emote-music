@@ -7,15 +7,17 @@ const
   multer = require('multer');
 let upload = multer({ storage: multer.memoryStorage() });
 
-let faceService = require('../services/face-service');
+let emotionService = require('../services/emotion-service'),
+  faceService = require('../services/face-service');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Emote Music' });
-});
+// router.get('/', function(req, res, next) {
+//   // res.render('index', { title: 'Emote Music' });
+// });
 
 router.post('/image/upload', upload.single('file'), function (req, res) {
-  faceService.getFaceAttributes(req.file.buffer)
+  // faceService.getFaceAttributes(req.file.buffer)
+  emotionService.getFaceEmotion(req.file.buffer)
     .then(data => {
       let info = JSON.parse(data);
       console.log(info);
