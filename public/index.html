@@ -11,7 +11,7 @@
   <!-- navigation bar -->
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <a class="navbar-brand"><i class="glyphicon glyphicon-bullhorn"></i> Emote Playlists</a>
+      <a class="navbar-brand"><i class="glyphicon glyphicon-equalizer"></i> Emote Playlists</a>
     </div>
   </nav>
 
@@ -21,15 +21,23 @@
     <!-- add form to submit image -->
     <div class="col-sm-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>Upload a Photo</h3>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <input class="form-control" type="file" name="file">
+        <div v-if="!image">
+          <div class="panel-heading">
+            <h3>Upload a Photo</h3>
           </div>
-
-          <button class="btn btn-primary">Process</button>
+          <div class="panel-body">
+            <input type="file" name="file" @change="onFileChange">
+          </div>
+        </div>
+        <div v-else>
+          <div class="panel-heading">
+            <h3>Photo</h3>
+          </div>
+          <div class="panel-body image">
+            <img :src="image">
+            <br />
+            <button @click="removeImage">Remove image</button>
+          </div>
         </div>
 
       </div>
@@ -37,7 +45,7 @@
 
     <!-- show results -->
     <div class="col-sm-6">
-      <div class="list-group">
+      <div class="list-group" id="results">
 
       </div>
     </div>
