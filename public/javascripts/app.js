@@ -29,15 +29,24 @@ new Vue({
     uploadImage (file) {
       var data = new FormData();
       data.append('file', file);
+      var vm = this;
 
-      this.$http.post('/image/upload', data, {
+      vm.$http.post('/image/upload', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
+      })
+      .then(function (resp) {
+        var config = {
+          w: document.getElementById('results').offsetWidth
+        };
+
+        RadarChart.draw('.results', resp.body.data.scores, config);
       });
     },
     removeImage: function (e) {
       this.image = '';
+      d3.select('.results').remove();
     }
   }
 });
