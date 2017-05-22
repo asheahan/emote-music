@@ -9,7 +9,8 @@ const
 let upload = multer({ storage: multer.memoryStorage() });
 
 let emotionService = require('../services/emotion-service'),
-  faceService = require('../services/face-service');
+  faceService = require('../services/face-service'),
+  spotifyService = require('../services/spotify-service');
 
 router.post('/image/upload', upload.single('file'), function (req, res) {
   // faceService.getFaceAttributes(req.file.buffer)
@@ -25,7 +26,8 @@ router.post('/image/upload', upload.single('file'), function (req, res) {
               value: info[0].scores[key]
             };
           })
-        }]
+        }],
+        rawScores: info[0].scores
       };
       res.json({
         status: 'SUCCESS',
@@ -34,6 +36,35 @@ router.post('/image/upload', upload.single('file'), function (req, res) {
       });
     })
     .catch(err => {
+      res.json({
+        status: 'ERROR',
+        message: err.message
+      });
+    });
+});
+
+router.get('/playlist/recommend', (req, res) => {
+  spotifyService.authenticate()
+    .then(credentials => {
+      return spotifyService.getRecommendations(credentials, req.query);
+    })
+    .then(data => {
+      data = JSON.parse(data);
+      // console.log(data.tracks);
+      let tracks = _.uniq(_.map(data.tracks, track => {
+        return {
+          uri: 'https://open.spotify.com/embed?uri=' + encodeURI(track.uri),
+          id: track.id
+        };
+      }));
+      res.json({
+        status: 'SUCCESS',
+        message: 'Retrieved recommendations',
+        data: tracks
+      });
+    })
+    .catch(err => {
+      console.error(err);
       res.json({
         status: 'ERROR',
         message: err.message
