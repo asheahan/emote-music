@@ -8,9 +8,9 @@ A user first uploads an image. This image is then passed to the Emotion API for 
 
 Using these scores, a D3 radar chart is generated to show the emotion scores across all the attributes.
 
-![picture scores][https://github.com/asheahan/emote-music/raw/master/screenshots/picture-emotion-scores-example.PNG]
+![picture scores](screenshots/picture-emotion-scores-example.PNG)
 
 At this point, a user can choose to generate a Spotify playlist using the attribute scores as a basis for songs.
 
-![alt text][screenshots/spotify-playlist-example.PNG]
+![playlist](screenshots/spotify-playlist-example.PNG)
 
