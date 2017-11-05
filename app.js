@@ -15,10 +15,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'app', 'public')));
 
 // Loop through routes directory and add routes to router
-fs.readdir(path.join(__dirname, 'routes'), (err, contents) => {
+fs.readdir(path.join(__dirname, 'app', 'api', 'routes'), (err, contents) => {
   if (err) {
     console.error('Error reading routes directory');
     return process.exit(1);
@@ -26,11 +26,13 @@ fs.readdir(path.join(__dirname, 'routes'), (err, contents) => {
 
   contents
     .filter(content =>
-      fs.lstatSync(path.join(__dirname, 'routes', content)).isDirectory()
+      fs
+        .lstatSync(path.join(__dirname, 'app', 'api', 'routes', content))
+        .isDirectory()
     )
     .forEach(folder => {
       try {
-        require(path.join(__dirname, 'routes', folder))(router);
+        require(path.join(__dirname, 'app', 'api', 'routes', folder))(router);
       } catch (e) {
         console.error(`Error adding routes for ${folder}`);
       }

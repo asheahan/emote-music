@@ -1,8 +1,0 @@
-{
-  "face": "Azure Cognitive Face API Key",
-  "emotion": "Azure Cognitive Emotion API Key",
-  "spotify": {
-    "clientId": "Spotify Client ID",
-    "clientSecret": "Spotify Client Secret"
-  }
-}
