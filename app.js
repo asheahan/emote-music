@@ -1,3 +1,4 @@
+const allowCORS = require('./app/api/config/allow-cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -16,6 +17,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app', 'public')));
+
+// allow CORS for dev
+if (process.env.ALLOW_CORS === 'true') {
+  allowCORS(app);
+}
 
 // Loop through routes directory and add routes to router
 fs.readdir(path.join(__dirname, 'app', 'api', 'routes'), (err, contents) => {
