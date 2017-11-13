@@ -1,19 +1,22 @@
 <template>
-  <div>
-    <app-toolbar/>
+  <v-app>
+    <navigation-drawer />
+    <app-toolbar />
     <transition name="fade">
       <router-view/>
     </transition>
-  </div>
+  </v-app>
 </template>
 
 <script>
+import NavigationDrawer from '@/components/NavigationDrawer';
 import AppToolbar from '@/components/AppToolbar';
 
 export default {
   name: 'app',
   components: {
-    AppToolbar
+    AppToolbar,
+    NavigationDrawer
   }
 }
 </script>

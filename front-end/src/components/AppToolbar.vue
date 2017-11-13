@@ -1,16 +1,19 @@
 <template>
   <v-toolbar app color="primary">
-    <router-link :to="{ name: 'home' }">
-      <v-toolbar-title class="white--text">
-        Emotify
-      </v-toolbar-title>
-    </router-link>
+    <v-toolbar-title class="white--text">
+      {{ title }}
+    </v-toolbar-title>
   </v-toolbar>
 </template>
 
 <script>
 export default {
-  name: 'app-toolbar'
+  name: 'app-toolbar',
+  computed: {
+    title() {
+      return this.$route.meta.title;
+    }
+  }
 };
 </script>
 

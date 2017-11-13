@@ -10,12 +10,20 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: HomePage
+      component: HomePage,
+      meta: {
+        title: 'Home',
+        icon: 'home'
+      }
     },
     {
       path: '/manual',
       name: 'manual',
-      component: ManualPage
+      component: ManualPage,
+      meta: {
+        title: 'Manual',
+        icon: 'build'
+      }
     }
   ]
 });
