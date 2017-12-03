@@ -1,4 +1,5 @@
-require('dotenv').config();
+// only for development
+// require('dotenv').config();
 
 const allowCORS = require('./app/api/config/allow-cors');
 const bodyParser = require('body-parser');
