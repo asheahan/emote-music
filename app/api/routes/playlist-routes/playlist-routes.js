@@ -23,18 +23,18 @@ exports.getRecommendations = (req, res, next) => {
     .then(data => {
       data = JSON.parse(data);
 
-      let tracks = _.uniq(
-        _.map(data.tracks, track => {
-          return {
-            uri: 'https://open.spotify.com/embed?uri=' + encodeURI(track.uri),
-            id: track.id
-          };
-        })
-      );
+      // let tracks = _.uniq(
+      //   _.map(data.tracks, track => {
+      //     return {
+      //       uri: 'https://open.spotify.com/embed?uri=' + encodeURI(track.uri),
+      //       id: track.id
+      //     };
+      //   })
+      // );
       res.json({
         status: 'SUCCESS',
         message: 'Retrieved recommendations',
-        data: tracks
+        data: data
       });
     })
     .catch(err => {
