@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <v-parallax :src="image" height="900">
+    <v-parallax :src="image" height="1000" jumbotron>
       <v-layout column align-center justify-center>
         <h1>
           <span class="accent--text">Emot</span>ify</h1>
-        <h4 class="white--text">Create Spotify playlists based on emotions</h4>
+        <h4 class="white--text">Explore Spotify music based on emotions</h4>
         <div>
           <v-btn outline color="white">Use image</v-btn>
           <router-link :to="{ name: 'manual' }">

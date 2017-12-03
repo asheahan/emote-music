@@ -2,12 +2,7 @@
   <v-navigation-drawer app :mini-variant.sync="mini" v-model="drawer">
     <v-toolbar flat class="transparent">
       <v-list class="pa-0">
-        <v-list-tile avatar>
-          <v-list-tile-avatar>
-            <v-avatar size="36px" class="primary">
-              <span class="white--text headline">E</span>
-            </v-avatar>
-          </v-list-tile-avatar>
+        <v-list-tile>
           <v-list-tile-content>
             <v-list-tile-title>Emotify</v-list-tile-title>
           </v-list-tile-content>
