@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import HomePage from '@/components/HomePage';
 import ManualPage from '@/components/ManualPage';
+import ImagePage from '@/components/ImagePage';
 
 Vue.use(Router);
 
@@ -23,6 +24,15 @@ export default new Router({
       meta: {
         title: 'Manual',
         icon: 'build'
+      }
+    },
+    {
+      path: '/image',
+      name: 'image',
+      component: ImagePage,
+      meta: {
+        title: 'Image',
+        icon: 'portrait'
       }
     }
   ]
