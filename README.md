@@ -10,13 +10,16 @@ This project was built using a Node.js backend API that calls both the Microsoft
 
 ## Workflow
 
-A user first uploads an image. This image is then passed to the Emotion API for analysis (including finding the face in the image and determining factors indicative of emotions). The API returns scores for each emotional attribute.
+A user first uploads an image. This image is then passed to the Emotion API for analysis (including finding the face in the image and determining factors indicative of emotions). 
 
-Using these scores, a D3 radar chart is generated to show the emotion scores across all the attributes.
+![picture](screenshots/image-example.PNG)
 
-![picture scores](screenshots/picture-emotion-scores-example.PNG)
+Updated: a user can manually adjust emotional sliders that correspond with scores.
+
+The API returns scores for each emotional attribute. Using these scores, a D3 radar chart is generated to show the emotion scores across all the attributes.
+
+![scores](screenshots/emotion-scores-example.PNG)
 
 At this point, a user can choose to generate a Spotify playlist using the attribute scores as a basis for songs.
 
-![playlist](screenshots/spotify-playlist-example.PNG)
-
+![playlist](screenshots/playlist-example.PNG)

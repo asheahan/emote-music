@@ -71,5 +71,9 @@ function calculateParameters(params) {
     targets.seed_genres = 'work-out,hard-rock,metal';
   }
 
+  if (params.surprise > 0.5) {
+    targets.seed_genres = 'funk,party,show-tunes';
+  }
+
   return targets;
 }
