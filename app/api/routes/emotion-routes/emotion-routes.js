@@ -15,6 +15,8 @@ const emotionService = require('../../services/emotion-service');
  * @param {Function} next
  */
 exports.processImage = (req, res, next) => {
+  console.log('processImage');
+
   emotionService
     .getFaceEmotion(req.file.buffer)
     .then(data => {
@@ -22,14 +24,12 @@ exports.processImage = (req, res, next) => {
       let dat = {
         faceRectangle: info[0].faceRectangle,
         scores: [
-          {
-            axes: _.map(_.keys(info[0].scores), key => {
-              return {
-                axis: key,
-                value: info[0].scores[key]
-              };
-            })
-          }
+          _.map(_.keys(info[0].scores), key => {
+            return {
+              axis: key,
+              value: info[0].scores[key]
+            };
+          })
         ],
         rawScores: info[0].scores
       };

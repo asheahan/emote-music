@@ -17,3 +17,19 @@ export const getPlaylist = params => {
       }
     });
 };
+
+export const uploadImage = data => {
+  return http
+    .post('/emotions/image', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(res => {
+      if (res.status === 200) {
+        return res.data.data;
+      } else {
+        return Promise.reject(new Error('Error uploading image'));
+      }
+    });
+};
