@@ -70,8 +70,16 @@ export default {
       this.svg = d3
         .select(this.$el)
         .append('svg')
-        .attr('width', 'auto')
-        .attr('viewBox', `0 0 ${this.options.w} ${this.options.h}`)
+        .attr(
+          'width',
+          this.options.w + this.options.margin.left + this.options.margin.right,
+        )
+        .attr(
+          'height',
+          this.options.h + this.options.margin.top + this.options.margin.bottom,
+        )
+        // .attr('width', 'auto')
+        // .attr('viewBox', `0 0 ${this.options.w} ${this.options.h}`)
         .attr('class', 'radar')
 
       //Append a g element

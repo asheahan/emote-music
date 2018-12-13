@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-layout row class="mt-4">
-      <v-flex xs12 sm6 offset-sm3>
+      <v-flex xs12 sm10 offset-sm1>
         <v-card>
           <v-card-title primary-title>
             <div class="headline">{{ name }}</div>
