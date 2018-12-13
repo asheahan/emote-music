@@ -6,9 +6,7 @@
           <v-card-title primary-title>
             <div class="headline">{{ name }}</div>
             <v-spacer/>
-            <v-btn outline @click="reset" v-if="showPlaylist && !loading">
-              <v-icon>settings</v-icon>&nbsp;Settings
-            </v-btn>
+            <v-btn outline @click="reset" v-if="showPlaylist && !loading">Reset</v-btn>
           </v-card-title>
           <v-card-text>
             <transition name="slide-fade">
@@ -212,16 +210,14 @@ export default {
         this.imageCapture
           .takePhoto()
           .then(this.uploadImage)
-          .then(blob => {
-            console.log(blob)
-            this.image = URL.createObjectURL(blob)
-          })
+          .then(blob => (this.image = URL.createObjectURL(blob)))
           .catch(error => console.error(error))
       }
     },
     reset() {
       this.tracks = []
       this.showPlaylist = false
+      this.removeImage()
     },
   },
 }
