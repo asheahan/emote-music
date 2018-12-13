@@ -61,7 +61,7 @@
                     <v-layout row wrap>
                       <v-flex xs12>
                         <v-card color="blue-grey darken-2" class="white--text">
-                          <img :src="image" class="emotion-image" height="300">
+                          <img :src="image" class="image-emotion">
                         </v-card>
                       </v-flex>
                       <v-flex xs12>
@@ -254,7 +254,8 @@ export default {
 }
 
 .image-emotion {
-  max-width: 50%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .results {
